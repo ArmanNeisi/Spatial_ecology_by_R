@@ -31,3 +31,8 @@ plot(elevation)
 # second method to select element
 elevation2 <- bei.extra[[1]]
 plot(elevation2)
+
+# passing from points to a continuous surface:
+density <- density(bei)
+
+densitymap
