@@ -4,13 +4,13 @@
 2  + 3
 
 #assign to an abject
-Zuma <- 2 + 3
+Zima <- 2 + 3
 zima
 
 duccio <- 5 + 3
 duccio
 
-final <- Zuma * duccio
+final <- Zima * duccio
 final
 
 final^2
