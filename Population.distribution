@@ -1,1 +1,25 @@
+#جلسه 6
 
+#why populations disperse over the landscape in a certain manner?
+
+install.packages("sdm")
+install.packages("terra")
+library(sdm)
+library(terra)
+
+system.file("external/species.shp", package= "sdm")
+
+file <- system.file("external/species.shp", package= "sdm")
+file
+#passage is 
+
+rana <- Vect(file)
+rana
+
+rana$Occurrence
+# برای این فراوانی و پراکندگی rana را ببینیم
+
+
+plot(rana)
+plot(rana, cex=.5)
+p
