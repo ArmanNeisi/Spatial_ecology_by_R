@@ -92,6 +92,5 @@ plot(vegemap)
 points(pres, cex=.5)
 
 #prec
-
 plot(precmap)
 points(pres, cex=.5)
