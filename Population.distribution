@@ -22,4 +22,21 @@ rana$Occurrence
 
 plot(rana)
 plot(rana, cex=.5)
-p
+
+#selecting presences
+rana[rana$Occurence==1,]
+
+species[species$Occurence==1,]
+
+pres$occurrence
+
+plot(pres, cex=.5)
+
+# exercise: select absences and call them abse
+abse <-rana[rana$Occurence==0,]
+plot(abse, cex=.5)
+
+
+# plot presences and absences, one beside the other
+
+plot[
