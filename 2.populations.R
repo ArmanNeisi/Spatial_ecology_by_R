@@ -36,3 +36,7 @@ plot(elevation2)
 density <- density(bei)
 
 densitymap
+
+
+#جلسه 6
+
