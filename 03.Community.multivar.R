@@ -1,3 +1,5 @@
+#19 Oct جزوه
+
 install.packages("vegan")
 library(vegan)
 
