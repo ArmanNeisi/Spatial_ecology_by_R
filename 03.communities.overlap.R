@@ -25,9 +25,14 @@ densityplot(timetig,  rug=True)
 #exercise: select only data on macaque individuals
 
 macaque <- kerinci[kerinci$sps == "macaque", ]
+head(macaque)
 
 kerinci$timeRad <- kerinci$time * 2 * pi
 timeRad
 
-timetig <- macaque$timeRad
-densityplot(timetig,  rug=True)
+timemac <- macaque$timeRad
+densityplot(timemac,  rug=True)
+
+#overlap
+
+overlapPlot(timtig, timemac)
