@@ -1,0 +1,15 @@
+#remote sensing for ecosystem monitoring 
+
+  install.packages("devtools")
+  library(devtools)
+
+  install.packages("terra")
+  library(terra)
+
+
+  devtools:: install_github(docciorocchini/imageRy)
+  library(imageRy)
+
+  im.list()
+
+
