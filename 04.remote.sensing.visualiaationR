@@ -7,9 +7,9 @@
   library(terra)
 
 
-  devtools:: install_github(docciorocchini/imageRy)
+  devtools::install_github("docciorocchini/imageRy")
   library(imageRy)
 
   im.list()
 
-
+b2 <- I'm.import("sentinel.dolomite.b2.tif"
