@@ -10,6 +10,7 @@
   devtools::install_github("docciorocchini/imageRy")
   library(imageRy)
 
+# for list
   im.list()
 
-b2 <- I'm.import("sentinel.dolomite.b2.tif"
+b2 <- im.import("sentinel.dolomites.b2.tif")
