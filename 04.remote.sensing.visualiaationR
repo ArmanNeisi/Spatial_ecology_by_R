@@ -31,3 +31,18 @@ plot(b4, col= cl)
 # exercise: import the NIR band from sentinel-2 (band 8)
 b8 <- im.import("sentinel.dolomites.b8.tif")
 plot(b8, col= cl)
+
+#multiframe
+
+par(mfrow= c(2,2))
+plot(b2, col= cl1)
+plot(b3, col= cl1)
+plot(b4, col= cl1)
+plot(b8, col= cl1)
+
+#stack images
+stacksent <- c(b2, b3, b4, b8)
+dev.off()  #it closes devices
+plot(stacksent, col= cl1)
+
+plot(stacksent[[4]], col= cl1)
