@@ -46,3 +46,20 @@ dev.off()  #it closes devices
 plot(stacksent, col= cl1)
 
 plot(stacksent[[4]], col= cl1)
+
+
+# exercise: plot in multiframe the bands with different colors ramps
+
+par(mfrow= c(2,2))
+
+plot(b2, col= clb)
+clb <- colorRampPalette(c("dark blue", "blue", "light blue"))(100)
+
+plot(b3, col= clg)
+clg <- colorRampPalette(c("dark green", "green", "light green"))(100)
+
+plot(b4, col= clr)
+clr <- colorRampPalette(c("dark red", "red", "light red"))(100)
+
+plot(b2, col= clw)
+clw <- colorRampPalette(c("dark yellow", "yellow", "light yellow"))(100)
