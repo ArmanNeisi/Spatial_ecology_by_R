@@ -23,3 +23,11 @@ plot(b2, col= cl)
 
 b3 <- im.import("sentinel.dolomites.b3.tif")
 plot(b3, col= cl)
+
+# import the red band from sentinel-2 (band 4)
+b4 <- im.import("sentinel.dolomites.b4.tif")
+plot(b4, col= cl)
+
+# exercise: import the NIR band from sentinel-2 (band 8)
+b8 <- im.import("sentinel.dolomites.b8.tif")
+plot(b8, col= cl)
