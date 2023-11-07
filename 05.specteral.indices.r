@@ -10,3 +10,9 @@ im.import("motogrosso-l5-1992219-lrg.jpg")
 im.plotRGB(m1992, r=1, g=2, b=3)
 im.plotRGB(m1992, r=2, g=1, b=3)
 im.plotRGB(m1992, r=2, g=3, b=1)
+
+
+# import recent image
+
+m2006 <- im.import("اسم عکس بالا")
+im.plotRGB(m2006, r=2, g=3, b=1)
