@@ -41,7 +41,7 @@ plot(dvi2006)
 cl<- colorRampPalette(c("dark blue","yellow ", "red" "black"))(100) #specify 
 plot(dvi2006, col=cl)
 
-#DVI
+#NDVI
 ndvi1992 = (dvi1992[[1]] - dvi1992[[2]])/(m1992[[1]] + m1992[[2]]
 ndvi1992 = dvi1992/(ndvi1992[[1]] - ndvi1992[[2]])
 plot(ndvi1992, col=cl)    
@@ -51,4 +51,6 @@ plot(ndvi1992, col=cl)
 plot(ndvi2006, col=cl)                      
 par(mfrow=1,2)
                                           
-plot(ndvi2006, col=cl)                                  
+#speeding up calculation
+ndvi2006a <- im.ndvi(m2006, 1, 2) 
+plot(ndvi2006a, col=cl)                                         
