@@ -24,3 +24,19 @@ par(mfrow= c(1,2))
 
 #mfrow means a multiframe which begins with row
 
+plot(m1992[[1]])
+
+# DVI = NIR - RED
+ # band: 1= NIR, 2=red, 3=green
+
+dvi1992 <- m1992[[1]] - m1992[[2]]
+plot(dvi1992)
+
+cl<- colorRampPalette(c("dark blue", "red", "yellow ", "black"))
+plot(dvi1992, col=cl)
+
+#exercise; calculate div of 2006:
+dvi2006 <- m2006[[1]] - m2006[[2]]
+plot(dvi2006)
+cl<- colorRampPalette(c("dark blue","yellow ", "red" "black"))(100)
+plot(dvi2006, col=cl)
