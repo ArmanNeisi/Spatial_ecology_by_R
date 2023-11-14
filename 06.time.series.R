@@ -45,7 +45,10 @@ plot(stackg, col= clg)
 
 # exercise: make the differences between the first and final elements of the stack
 
-difg = g2000[[1]] - g2015[[1]]
-plot(difg)    
-cldifg<- colorRampPalette(c("black", "blue", "white", "red")(100)
-plot(difg, col= cldifg)       
+difg = stackg[[1]] - stackg[[4]]      # or: difg = g2000[1]] - g2015[[1]]   
+plot(difg, col= cldif)    
+
+#exercise: make a rgb plot using different years
+
+im.plotRGB(stackg, 1=r, 2=g, 3=b)
+plot(stackg, col= cldif)  
