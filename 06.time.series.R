@@ -21,3 +21,6 @@ plot(dif)
 #pallete
 cldif<- colorRampPalette(c("blue", "white", "red")(100)
 plot(dif, col= cldif)
+
+
+## new examples 
