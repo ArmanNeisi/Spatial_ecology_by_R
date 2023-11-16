@@ -23,3 +23,15 @@ plotRGB(Najaaug, r=1, g=2, b=3)
 najwdif= naja[[1]] - Najaaug[[1]]
 cl <- ColorRampPalette("brown", "grey", "orange")
 plot(najadif, col= cl)
+
+#download your own proferred image
+typhoon <- rast("نام عکستان")
+plotRGB(typhoon, r=1, g=2, b=3)
+plotRGB(typhoon, r=2, g=1, b=3)
+plotRGB(typhoon, r=3, g=1, b=2)
+
+
+# the Mato Grosso image which previously we used it, can be downloaded directly from EN-NASA:
+
+mato <- rast("اسم عکس")
+plotRGB(mato,  r=1, g=2, b=3)
