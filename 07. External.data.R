@@ -7,4 +7,6 @@ library(terra)
 # windows users: c://path/downloads
 # my own:
 setwd("مسیر عکسی که دانلود کردید در کامپیوترتان")
-naji <- rast("نام عکس")  #like in im.import 
+naja <- rast("نام عکس")  #like in im.import 
+
+plotRGB(Najaf, r=1, g=2, b=3)  # im-plotRGB
