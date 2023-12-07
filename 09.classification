@@ -30,5 +30,26 @@ plot(m2006c)
 # my classes: forest= 1, human= 2
 
 par(mfrow= c(1, 2))
-plot(m1992c)
-plot(m2006c)
+plot(m1992c[[1]])
+plot(m2006c[[1]])
+
+f1992 <- freq(m1992c)
+f1992
+
+tot1992 <- ncell(m1992c)
+#percentage:
+p1992 <- f1992 * 100 / tot1992
+p1992
+# forest= 83% , human=17%  در مورد این مثال
+
+# percentage of 2006
+
+
+f2006 <- freq(m2006c)
+f2006
+tot2006 <- ncell(m2006c)
+#percentage:
+p2006 <- f2006 * 100 / tot2006
+p2006
+#forest= 45% , human= 55%
+
