@@ -1,1 +1,34 @@
+# classifying satellite images and estimates the amount of 
 
+library(terra)
+library(imageRy)
+
+im.list()
+# link 
+
+sun <- im.import(" که از r کپی کرده ایم. نام فایل")
+
+sunc <- im.classify(sun, num-clusters= 3)
+
+plot(sunc)    #اگر با خط بالا نیامد نقشه، این را تایپ کنید 
+plot(sun)    #دوباره عکس میاد
+
+#classify satellite data
+
+im.list()
+m1992 <- im.import("motogrosso-l5-1992219-lrg.jpg")
+m2006 <- im.import("motogrosso-l5-2006209-lrg.jpg")
+
+plotRGB(m1992)
+
+m1992c <- im.classify(m1992, num-clusters= 2)
+plot(m1992c)
+# classes: forest= 1; human= 2.  بسته به کامپیوتر و برنامه شما، عددها تغییر میکند
+
+m2006c <- im.classify(m2006, num-clusters= 2)
+plot(m2006c)
+# my classes: forest= 1, human= 2
+
+par(mfrow= c(1, 2))
+plot(m1992c)
+plot(m2006c)
