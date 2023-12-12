@@ -62,6 +62,10 @@ Tabout <- data.frame(class, 1992, 2006)
 tabout 
 
 library(ggplot2)
+library(patchwork)
 
-#final output 
-p1 <- ggplot(Tabout, aes(x=class, y=y1992, color=class)) + geom_bar(stat="identity", fill="white")
+#final output:
+p1 <- ggplot(Tabout, aes(x=class, y=y1992, color=class)) + geom_bar(stat="identity", fill="white") + ylim(c(0,100))
+p2 <- ggplot(Tabout, aes(x=class, y=y2006, color=class)) + geom_bar(stat="identity", fill="white")+ ylim(c(0,100))
+
+p1 + p2
