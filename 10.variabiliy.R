@@ -22,6 +22,7 @@ plot(NIR)
 #moving window
 # focal function 
 sd3 <- focal(NIR, matrix(1/9, 3, 3), fun= sd) # matrix describes the dimension of our moving windows
+# sd = standard variation 
 plot(sd3) #standard variation
 
 colorRampPalette(viridis(7))(255)
