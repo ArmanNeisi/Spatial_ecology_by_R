@@ -41,3 +41,6 @@ plot(sd7, col= viridis)  #if we large the moving window, we add the pixels. so w
 # original image plus the 7×7 sd:
 im.plotRGB(sent, r=1, g=2, b=3)
 plot(sd, col= viridis)
+
+# multivariate analysis:
+# نکته) متدی که خم‌های باندها را با هم کُمپکت می‌کند و در انتها آنرا تبدیل به یک باند میکند
