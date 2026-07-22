@@ -1,4 +1,4 @@
-# Temporal Analysis Of The Dixie Fire (Butte County, California) (July 2021)
+# Temporal Analysis Of The Dixie Fire (Plumas County, California) (July 2021)
 
   
 # Project objective: Monitoring fire impact and vegetation recovery
@@ -10,8 +10,7 @@
 #4. May 2025: Post-fire (4th year)
 
 
-
-# 1. Package installing:
+# 1. Package installing:---------------------------
 
 install.packages("terra")
 install.packages("viridis")
@@ -26,12 +25,12 @@ library(ggplot2)
 library(gridExtra)
 library(RStoolbox)
 
-
+## change the location of saving the terra files:
 terraOptions(tempdir="F:/arman/R_temp")
 dir.exists("F:/arman/R_temp")
 
 
-# 2. Set working directory and data import:
+# 2. Set working directory and data import:--------------------
 
 # Set working directory:
 
@@ -41,33 +40,30 @@ setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire")
 # Import July 2020 image (pre-fire):
 
 setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire/2020 july 24- pre")
-
 rlist_july2020 <- list.files(pattern="SR_B[1-7].TIF$")  # Select only bands 1-7
 import_july2020 <- lapply(rlist_july2020, rast)  # Import each band as raster
 dixiefire_july2020 <- rast(import_july2020)  # Stack all bands together
 dixiefire_july2020  # Check the stack
 
-# Return to main folder:
+## Return to main folder:
 setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire")
 
 
 # Import september 2021 image (post-fire immediate):
 
 setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire/2021 sept 13- fire")
-
 rlist_spt2021 <- list.files(pattern="SR_B[1-7].TIF$")
 import_spt2021 <- lapply(rlist_spt2021, rast)
 dixiefire_spt2021 <- rast(import_spt2021)
 dixiefire_spt2021
 
-# Return to main folder:
+## Return to main folder:
 setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire")
 
 
 # Import August 2022 image (post-fire 1st year recovery):
 
 setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire/2022.08.15 - first year")
-
 rlist_aug2022 <- list.files(pattern="SR_B[1-7].TIF$")
 import_aug2022 <- lapply(rlist_aug2022, rast)
 dixiefire_aug2022 <- rast(import_aug2022)
@@ -80,18 +76,16 @@ setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire")
 # Import May 2025 image (long-term recovery):
 
 setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire/2025.08.30 - fourth")
-
 rlist_may2025 <- list.files(pattern="SR_B[1-7].TIF$")
 import_may2025 <- lapply(rlist_may2025, rast)
 dixiefire_may2025 <- rast(import_may2025)
 dixiefire_may2025
 
-# Return to main folder
+## Return to main folder:
 setwd("F:/arman/bologna/me/thesis/spatial ecology project/dixie fire")
 
 
-
-# 3. RGB Visualization (Natural Colours):
+# 3. RGB Visualization (Natural Colours):-----------------
 
 ## Plot all images in natural colors
 ## R=Band4 (Red), G=Band3 (Green), B=Band2 (Blue)
@@ -104,12 +98,10 @@ plotRGB(dixiefire_spt2021, r=4, g=3, b=2, stretch="lin", main="Sept 2021 - Post-
 plotRGB(dixiefire_aug2022, r=4, g=3, b=2, stretch="lin", main="August 2022 - Recovery 1yr")
 plotRGB(dixiefire_may2025, r=4, g=3, b=2, stretch="lin", main="May 2025 - Recovery 4yr")
 
-
 dev.off()  ## Close the plot window
 
 
-
-# 4. RGB Visualization - False Colours (NIR)
+# 4. RGB Visualization - False Colours (NIR):-------------------------
 
 ## Plot all images in false color NIR
 ## R = Band5 (NIR), G = Band4 (Red), B = Band3 (Green)
@@ -124,12 +116,10 @@ plotRGB(dixiefire_spt2021, r=5, g=4, b=3, stretch="lin", main="Sept 2021 - Post-
 plotRGB(dixiefire_aug2022, r=5, g=4, b=3, stretch="lin", main="August 2022 - Recovery 1yr")
 plotRGB(dixiefire_may2025, r=5, g=4, b=3, stretch="lin", main="May 2025 - Recovery 4yr")
 
-
 dev.off()
 
 
-
-# 5. Calculate NDVI (Normalized Difference Vegetation Index)
+# 5. Calculate NDVI (Normalized Difference Vegetation Index):-----------------
 
 ## NDVI formula: (NIR - Red) / (NIR + Red)
 ## For Landsat 8/9: NIR = Band 5, Red = Band 4
@@ -157,7 +147,7 @@ ndvi_may2025 <- (dixiefire_may2025[[5]] - dixiefire_may2025[[4]]) /
 
 
 
-# 6. Visualize NDVI:
+# 6. Visualize NDVI:------------------------------
 
 ## Plot all NDVI maps (using viridis color palette)
 ## Yellow/green = high NDVI (healthy vegetation)
@@ -173,8 +163,7 @@ plot(ndvi_may2025, col=viridis(100, option="D"), main="May 2025")
 dev.off()
 
 
-
-# 7. Calculate NBR (Normalized burn ratio) - Fire-specific index:
+# 7. Calculate NBR (Normalized burn ratio):-----------------------------
 
 ## NBR formula: (NIR - SWIR2) / (NIR + SWIR2)
 ## For Landsat 8/9: NIR = Band5, SWIR2 = Band7
@@ -200,7 +189,6 @@ nbr_aug2022 <- (dixiefire_aug2022[[5]] - dixiefire_aug2022[[7]]) /
 nbr_may2025 <- (dixiefire_may2025[[5]] - dixiefire_may2025[[7]]) / 
   (dixiefire_may2025[[5]] + dixiefire_may2025[[7]])
 
-
 # Visualize NBR maps (using viridis plasma palette)
 par(mfrow=c(2,2))
 
@@ -212,7 +200,7 @@ plot(nbr_may2025, col=viridis(100, option="C"), main="NBR May 2025")
 dev.off()
 
 
-# 8. Calculate dNBR (differenced NBR) - Burn Severity
+# 8. Calculate dNBR (differenced NBR) - Burn Severity:---------------------
 
 ## dNBR = NBR pre fire - NBR post fire
 ## High dNBR values : indicate high fire severity
@@ -227,7 +215,7 @@ nbr_aug2022_res <- resample(nbr_aug2022, nbr_july2020, method="bilinear")
 nbr_may2025_res <- resample(nbr_may2025, nbr_july2020, method="bilinear")
 
 
-# Calculate immediate fire impact (July 2020 - september 2021)
+# Calculate immediate fire impact (July 2020 - september 2021):
 dnbr_immediate <- nbr_july2020 - nbr_sept2021_res
 
 
@@ -239,7 +227,6 @@ dnbr_immediate <- nbr_july2020 - nbr_sept2021_res
 par(mfrow=c(1,1))
 plot(dnbr_immediate, col=viridis(100, option="A"), 
      main="dNBR - Burn Severity Map\n(July 2020 - sept 2021)")
-
 
 # USGS Burn Severity Classification:
 
@@ -270,11 +257,8 @@ plot(dnbr_recovery1, col=viridis(100, option="D"),
 plot(dnbr_recovery_total, col=viridis(100, option="D"), 
      main="Recovery Total\n(may 2025 - sept 2021)")
 
-dev.off()
 
-
-
-# 9. Calculate NDVI Differences - Temporal Analysis:
+# 9. Calculate NDVI Differences - Temporal Analysis:----------------------
 
 # IMPORTANT: Re-sample all NDVI images to match july 2020 extent
 # This ensures all images have identical dimensions and coordinates
@@ -304,17 +288,14 @@ ndvi_diff_recovery1 <- ndvi_aug2022_res - ndvi_sept2021_res
 
 ndvi_diff_recovery_totale <- ndvi_may2025_res - ndvi_sept2021_res
 
-
-# Calculate NDVI difference: long-term comparison
+# Calculate NDVI difference: long-term comparison:
 ## Compares current state (2025) to original pre-fire state (2020)
 
 ndvi_diff_longterm <- ndvi_may2025_res - ndvi_july2020
 
-
 # Visualize all NDVI differences
 
 par(mfrow=c(2,2))
-
 plot(ndvi_diff_impact, col=viridis(100, option="B"), 
      main="Fire Impact (july 2020 - sept 2021)")
 plot(ndvi_diff_recovery1, col=viridis(100, option="D"), 
@@ -324,10 +305,8 @@ plot(ndvi_diff_recovery_totale, col=viridis(100, option="D"),
 plot(ndvi_diff_longterm, col=viridis(100, option="E"), 
      main="Long-term Change (may 2025 - july 2020)")
 
-dev.off()
 
-
-# 10. Unsupervised Classification:
+# 10. Unsupervised Classification:----------------------------
 
 ## Perform unsupervised classification into 3 classes
 ## expected classes: healthy vegetation, sparse vegetation/burned, bare soil
@@ -349,17 +328,13 @@ class_may2025 <- unsuperClass(dixiefire_may2025, nClasses=3)
 # Visualize all classifications:
 
 par(mfrow=c(2, 2))
-
 plot(class_july2020$map, col=viridis(3, option="E"), main="july 2020")
 plot(class_sept2021$map, col=viridis(3, option="E"), main="sept 2021")
 plot(class_aug2022$map, col=viridis(3, option="E"), main="Aug 2022")
 plot(class_may2025$map, col=viridis(3, option="E"), main=" May 2025")
 
-dev.off()
 
-
-
-# 11. Calculate Frequencies And Percentages
+# 11. Calculate Frequencies And Percentages:------------------------
 
 ## Calculate pixel frequency for each class in each year
 ## This tells us how many pixels belong to each class
@@ -368,15 +343,15 @@ dev.off()
 freq_july2020 <- freq(class_july2020$map)
 freq_july2020
 
-# Frequencies for september 2021
+# Frequencies for september 2021:
 freq_sept2021 <- freq(class_sept2021$map)
 freq_sept2021
 
-# Frequencies for august 2022
+# Frequencies for august 2022:
 freq_aug2022 <- freq(class_aug2022$map)
 freq_aug2022
 
-# Frequencies for may 2025
+# Frequencies for may 2025:
 freq_may2025 <- freq(class_may2025$map)
 freq_may2025
 
@@ -401,14 +376,13 @@ percent_aug2022
 percent_may2025
 
 
-# 12. Calculate Vegetation Percentages Using NDVI Thresholds
+# 12. Calculate Vegetation Percentages Using NDVI Thresholds:----------------
 
 # Alternative method: classify based on NDVI values:
 
 ## NDVI > 0.4 = healthy vegetation
 ## 0.2 < NDVI <= 0.4 = sparse vegetation
 ## NDVI <= 0.2 = burned/bare soil
-
 
 # Function to calculate vegetation percentages from NDVI:
 
@@ -454,7 +428,7 @@ veg_perc_may2025
 
 
 
-# 13. Calculate Recovery Rate:
+# 13. Calculate Recovery Rate:------------------------
 
 # Calculate total vegetation (healthy + sparse) for each date:
 
@@ -491,7 +465,7 @@ recovery_summary <- data.frame(
 View(recovery_summary)
 
 
-# 15. Create Dataframes and Plots with GGPLOT2:
+# 15. Create Dataframes and Plots with GGPLOT2:--------------------------
 
 ## Create dataframe with vegetation percentages for all dates
 ## This will be used for plotting temporal trends
@@ -654,7 +628,7 @@ ggplot(healthy_only, aes(x=Year, y=Percentage)) +
   ylim(0, 100)
 
 
-# 14. Fix Chronological Order for GGPLOT:
+# 14. Fix Chronological Order for GGPLOT:-----------------------------
 
 # Convert Year to factor with correct chronological order:
 
@@ -662,8 +636,7 @@ veg_temporal_long$Year <- factor(veg_temporal_long$Year,
                                  levels = c("july 2020", "sept 2021", "aug 2022", "may 2025"))
 
 
-
-# 16. PCA Analysis and Variability:
+# 16. PCA Analysis and Variability:------------------------------
 
 ## Principal Component Analysis reduces multi-spectral data to main components
 ## PC1 typically explains most of the variance in the system
@@ -704,8 +677,6 @@ plot(pc1_july2020, col=viridis(100, option="C"), main="PC1 july 2020")
 plot(pc1_spt2021, col=viridis(100, option="C"), main="PC1 spt 2021")
 plot(pc1_may2025, col=viridis(100, option="C"), main="PC1 May 2025")
 
-dev.off()
-
 
 # Calculate spatial variability using moving window:
 
@@ -736,8 +707,6 @@ plot(sd_pc1_spt2021, col=viridis(100, option="B"),
 plot(sd_pc1_may2025, col=viridis(100, option="B"), 
      main="Variability May 2025\nRecovery")
 
-dev.off()
-
 
 # Interpretation of variability maps:
 
@@ -745,7 +714,7 @@ dev.off()
 
 
 
-# 17. Export all plots for presentation:
+# 17. Export all plots for presentation:---------------------------
 
 # Create a folder for saving plots:
 dir.create("plots_presentation", showWarnings = FALSE)
@@ -754,8 +723,8 @@ dir.create("plots_presentation", showWarnings = FALSE)
 ## 300 dpi is publication quality
 ## width and height in inches
 
-# RGB Natural Colors:
 
+# RGB Natural Colors:
 png("plots_presentation/slide06_rgb_natural.png", 
     width=12, height=8, units="in", res=300)
 
@@ -765,11 +734,8 @@ plotRGB(dixiefire_spt2021, r=4, g=3, b=2, stretch="lin", main="Sept 2021 - Post-
 plotRGB(dixiefire_aug2022, r=4, g=3, b=2, stretch="lin", main="August 2022 - Recovery 1yr")
 plotRGB(dixiefire_may2025, r=4, g=3, b=2, stretch="lin", main="May 2025 - Recovery 4yr")
 
-dev.off()
-
 
 # RGB False Color NIR:
-
 png("plots_presentation/slide07_rgb_falsecolor.png", 
     width=12, height=8, units="in", res=300)
 
@@ -783,9 +749,9 @@ dev.off()
 
 
 # NDVI Maps:
-
 png("plots_presentation/slide08_ndvi_maps.png", 
     width=12, height=8, units="in", res=300)
+
 par(mfrow=c(2,3))
 plot(ndvi_july2020, col=viridis(100, option="D"), main="NDVI July 2020 - Pre-fire")
 plot(ndvi_sept2021, col=viridis(100, option="D"), main="NDVI September 2021 - POST fire")
@@ -796,9 +762,9 @@ dev.off()
 
 
 # NBR Maps:
-
 png("plots_presentation/slide09_nbr_maps.png", 
     width=12, height=8, units="in", res=300)
+
 par(mfrow=c(2,3))
 plot(nbr_july2020, col=viridis(100, option="C"), main="NBR July 2020")
 plot(nbr_sept2021, col=viridis(100, option="C"), main="NBR sept 2021")
@@ -809,9 +775,9 @@ dev.off()
 
 
 # dNBR Burn Severity:
-
 png("plots_presentation/slide10_dnbr_severity.png", 
     width=10, height=8, units="in", res=300)
+
 par(mfrow=c(1,1))
 plot(dnbr_immediate, col=viridis(100, option="A"), 
      main="dNBR - Burn Severity Map\n(July 2020 - sept 2021)")
@@ -820,9 +786,9 @@ dev.off()
 
 
 # NDVI Differences (2 maps):
-
 png("plots_presentation/slide11_ndvi_differences.png", 
     width=12, height=6, units="in", res=300)
+
 par(mfrow=c(1,2))
 plot(ndvi_diff_impact, col=viridis(100, option="B"), 
      main="NDVI Difference: Fire Impact\n(july 2020 - sept 2021)")
@@ -833,9 +799,9 @@ dev.off()
 
 
 # Classifications:
-
 png("plots_presentation/slide12_classifications.png", 
     width=12, height=8, units="in", res=300)
+
 par(mfrow=c(2,3))
 plot(class_july2020$map, col=viridis(3, option="E"), main="Classification july 2020")
 plot(class_sept2021$map, col=viridis(3, option="E"), main="Classification sept 2021")
@@ -891,10 +857,10 @@ ggsave("plots_presentation/slide14_line_trend.png",
 
 
 
-# PCA Variability Maps
-
+# PCA Variability Maps:
 png("plots_presentation/slide15_pca_variability.png", 
     width=14, height=5, units="in", res=300)
+
 par(mfrow=c(1,3))
 plot(sd_pc1_spt2021, col=viridis(100, option="B"), 
      main="Variability july 2020\nPre-fire")
